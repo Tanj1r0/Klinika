@@ -18,7 +18,7 @@ private:
     std::string diagnosis;
 
 public:
-    // Конструктор класса
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР°
     Patient(const std::string& name, const std::string& gender, const std::string& birthDate,
         const std::string& phoneNumber, const std::string& passportData, const std::string& insurancePolicy,
         const std::string& address, const std::string& diagnosis)
@@ -53,24 +53,24 @@ public:
         return address;
     }
 
-    // Перегрузка оператора < для сортировки пациентов по ФИО
+    // РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° < РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РїР°С†РёРµРЅС‚РѕРІ РїРѕ Р¤РРћ
     bool operator<(const Patient& other) const {
         return fullName < other.fullName;
     }
 
-    // Метод для вывода информации о пациенте
+    // РњРµС‚РѕРґ РґР»СЏ РІС‹РІРѕРґР° РёРЅС„РѕСЂРјР°С†РёРё Рѕ РїР°С†РёРµРЅС‚Рµ
     void display() const {
-        std::cout << u8"ФИО: " << fullName << std::endl;
-        std::cout << u8"Пол: " << gender << std::endl;
-        std::cout << u8"Дата рождения: " << birthDate << std::endl;
-        std::cout << u8"Номер телефона: " << phoneNumber << std::endl;
-        std::cout << u8"Паспортные данные: " << passportData << std::endl;
-        std::cout << u8"Полис: " << insurancePolicy << std::endl;
-        std::cout << u8"Адрес: " << address << std::endl;
-        std::cout << u8"Диагноз: " << diagnosis << std::endl;
+        std::cout << u8"Р¤РРћ: " << fullName << std::endl;
+        std::cout << u8"РџРѕР»: " << gender << std::endl;
+        std::cout << u8"Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ: " << birthDate << std::endl;
+        std::cout << u8"РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°: " << phoneNumber << std::endl;
+        std::cout << u8"РџР°СЃРїРѕСЂС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ: " << passportData << std::endl;
+        std::cout << u8"РџРѕР»РёСЃ: " << insurancePolicy << std::endl;
+        std::cout << u8"РђРґСЂРµСЃ: " << address << std::endl;
+        std::cout << u8"Р”РёР°РіРЅРѕР·: " << diagnosis << std::endl;
     }
 
-    // Метод для проверки наличия подстроки в данных пациента (регистронезависимый поиск)
+    // РњРµС‚РѕРґ РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅР°Р»РёС‡РёСЏ РїРѕРґСЃС‚СЂРѕРєРё РІ РґР°РЅРЅС‹С… РїР°С†РёРµРЅС‚Р° (СЂРµРіРёСЃС‚СЂРѕРЅРµР·Р°РІРёСЃРёРјС‹Р№ РїРѕРёСЃРє)
     bool containsSubstring(const std::string& substring) const {
         std::string lowerCaseData = fullName + gender + birthDate + phoneNumber +
             passportData + insurancePolicy + address + diagnosis;
@@ -80,7 +80,7 @@ public:
         return lowerCaseData.find(lowerCaseSubstring) != std::string::npos;
     }
 
-    // Геттер для получения ФИО пациента
+    // Р“РµС‚С‚РµСЂ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ Р¤РРћ РїР°С†РёРµРЅС‚Р°
     std::string getFullName() const {
         return fullName;
     }
@@ -114,24 +114,24 @@ int main() {
         inputFile.close();
     }
     else {
-        std::cout << u8"Ошибка открытия файла patients_data.txt" << std::endl;
+        std::cout << u8"РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° patients_data.txt" << std::endl;
         return 1;
     }
 
     while (true) {
-        std::cout << u8"1. Поиск пациента\n";
-        std::cout << u8"2. Сортировка пациентов\n";
-        std::cout << u8"3. Вывод всех пациентов\n";
-        std::cout << u8"4. Добавить пациента\n";
-        std::cout << u8"5. Выход\n";
-        std::cout << u8"Выберите пункт меню: ";
+        std::cout << u8"1. РџРѕРёСЃРє РїР°С†РёРµРЅС‚Р°\n";
+        std::cout << u8"2. РЎРѕСЂС‚РёСЂРѕРІРєР° РїР°С†РёРµРЅС‚РѕРІ\n";
+        std::cout << u8"3. Р’С‹РІРѕРґ РІСЃРµС… РїР°С†РёРµРЅС‚РѕРІ\n";
+        std::cout << u8"4. Р”РѕР±Р°РІРёС‚СЊ РїР°С†РёРµРЅС‚Р°\n";
+        std::cout << u8"5. Р’С‹С…РѕРґ\n";
+        std::cout << u8"Р’С‹Р±РµСЂРёС‚Рµ РїСѓРЅРєС‚ РјРµРЅСЋ: ";
 
         int choice;
         std::cin >> choice;
 
         if (choice == 1) {
             std::string searchQuery;
-            std::cout << u8"Введите запрос для поиска: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕРёСЃРєР°: ";
             std::cin >> searchQuery;
 
             bool found = false;
@@ -143,12 +143,12 @@ int main() {
             }
 
             if (!found) {
-                std::cout << u8"Пациенты с такими данными не найдены.\n";
+                std::cout << u8"РџР°С†РёРµРЅС‚С‹ СЃ С‚Р°РєРёРјРё РґР°РЅРЅС‹РјРё РЅРµ РЅР°Р№РґРµРЅС‹.\n";
             }
         }
         else if (choice == 2) {
             std::sort(patients.begin(), patients.end());
-            std::cout << u8"Пациенты отсортированы по ФИО.\n";
+            std::cout << u8"РџР°С†РёРµРЅС‚С‹ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ Р¤РРћ.\n";
         }
         else if (choice == 3) {
             for (const auto& patient : patients) {
@@ -158,42 +158,42 @@ int main() {
         }
         else if (choice == 4) {
             std::string name, gender, birthDate, phoneNumber, passportData, insurancePolicy, address, diagnosis;
-            std::cin.ignore(); // очищаем буфер ввода перед вводом имени, чтобы избежать пропуска ввода
+            std::cin.ignore(); // РѕС‡РёС‰Р°РµРј Р±СѓС„РµСЂ РІРІРѕРґР° РїРµСЂРµРґ РІРІРѕРґРѕРј РёРјРµРЅРё, С‡С‚РѕР±С‹ РёР·Р±РµР¶Р°С‚СЊ РїСЂРѕРїСѓСЃРєР° РІРІРѕРґР°
 
-            std::cout << u8"Введите ФИО пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ Р¤РРћ РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, name);
-            std::cout << u8"Введите пол пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ РїРѕР» РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, gender);
-            std::cout << u8"Введите дату рождения пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ СЂРѕР¶РґРµРЅРёСЏ РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, birthDate);
-            std::cout << u8"Введите номер телефона пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, phoneNumber);
-            std::cout << u8"Введите паспортные данные пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ РїР°СЃРїРѕСЂС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, passportData);
-            std::cout << u8"Введите номер страхового полиса пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃС‚СЂР°С…РѕРІРѕРіРѕ РїРѕР»РёСЃР° РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, insurancePolicy);
-            std::cout << u8"Введите адрес пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ Р°РґСЂРµСЃ РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, address);
-            std::cout << u8"Введите диагноз пациента: ";
+            std::cout << u8"Р’РІРµРґРёС‚Рµ РґРёР°РіРЅРѕР· РїР°С†РёРµРЅС‚Р°: ";
             std::getline(std::cin, diagnosis);
 
             Patient newPatient(name, gender, birthDate, phoneNumber, passportData, insurancePolicy, address, diagnosis);
             patients.push_back(newPatient);
-            std::cout << u8"Пациент добавлен.\n";
+            std::cout << u8"РџР°С†РёРµРЅС‚ РґРѕР±Р°РІР»РµРЅ.\n";
 
             std::ofstream outputFile("patients_data.txt", std::ios::out | std::ios::trunc);
             if (outputFile.is_open()) {
-                // Устанавливаем режим вывода в UTF-8
-                outputFile << std::string(u8"\uFEFF");  // Добавляем BOM (Byte Order Mark) для указания UTF-8 кодировки
-                // Запись данных нового пациента в файл с символом новой строки в конце
+                // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЂРµР¶РёРј РІС‹РІРѕРґР° РІ UTF-8
+                outputFile << std::string(u8"\uFEFF");  // Р”РѕР±Р°РІР»СЏРµРј BOM (Byte Order Mark) РґР»СЏ СѓРєР°Р·Р°РЅРёСЏ UTF-8 РєРѕРґРёСЂРѕРІРєРё
+                // Р—Р°РїРёСЃСЊ РґР°РЅРЅС‹С… РЅРѕРІРѕРіРѕ РїР°С†РёРµРЅС‚Р° РІ С„Р°Р№Р» СЃ СЃРёРјРІРѕР»РѕРј РЅРѕРІРѕР№ СЃС‚СЂРѕРєРё РІ РєРѕРЅС†Рµ
                 outputFile << newPatient.getFullName() << "," << newPatient.getGender() << "," << newPatient.getBirthDate() << ","
                     << newPatient.getPhoneNumber() << "," << newPatient.getPassportData() << "," << newPatient.getInsurancePolicy() << ","
                     << newPatient.getAddress() << "," << newPatient.getDiagnosis() << "\n";
                 outputFile.close();
-                std::cout << u8"Пациент добавлен и данные обновлены в файле.\n";
+                std::cout << u8"РџР°С†РёРµРЅС‚ РґРѕР±Р°РІР»РµРЅ Рё РґР°РЅРЅС‹Рµ РѕР±РЅРѕРІР»РµРЅС‹ РІ С„Р°Р№Р»Рµ.\n";
             }
             else {
-                std::cout << u8"Ошибка открытия файла для записи.\n";
+                std::cout << u8"РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° РґР»СЏ Р·Р°РїРёСЃРё.\n";
             }
         }
 
@@ -201,7 +201,7 @@ int main() {
             break;
         }
         else {
-            std::cout << u8"Неверный выбор. Пожалуйста, попробуйте снова.\n";
+            std::cout << u8"РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n";
         }
     }
 
