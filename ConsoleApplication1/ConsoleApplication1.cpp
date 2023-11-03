@@ -60,14 +60,14 @@ public:
 
     // Метод для вывода информации о пациенте
     void display() const {
-        std::cout << u8"ФИО: " << fullName << std::endl;
-        std::cout << u8"Пол: " << gender << std::endl;
-        std::cout << u8"Дата рождения: " << birthDate << std::endl;
-        std::cout << u8"Номер телефона: " << phoneNumber << std::endl;
-        std::cout << u8"Паспортные данные: " << passportData << std::endl;
-        std::cout << u8"Полис: " << insurancePolicy << std::endl;
-        std::cout << u8"Адрес: " << address << std::endl;
-        std::cout << u8"Диагноз: " << diagnosis << std::endl;
+        std::cout <<  "ФИО: " << fullName << std::endl;
+        std::cout <<  "Пол: " << gender << std::endl;
+        std::cout <<  "Дата рождения: " << birthDate << std::endl;
+        std::cout <<  "Номер телефона: " << phoneNumber << std::endl;
+        std::cout <<  "Паспортные данные: " << passportData << std::endl;
+        std::cout <<  "Полис: " << insurancePolicy << std::endl;
+        std::cout <<  "Адрес: " << address << std::endl;
+        std::cout <<  "Диагноз: " << diagnosis << std::endl;
     }
 
     // Метод для проверки наличия подстроки в данных пациента (регистронезависимый поиск)
@@ -89,8 +89,8 @@ public:
 
 int main() {
     
-    SetConsoleOutputCP(CP_UTF8);
-  
+    system("chcp 1251");
+
     std::vector<Patient> patients;
 
     std::ifstream inputFile("patients_data.txt");
@@ -114,24 +114,24 @@ int main() {
         inputFile.close();
     }
     else {
-        std::cout << u8"Ошибка открытия файла patients_data.txt" << std::endl;
+        std::cout <<  "Ошибка открытия файла patients_data.txt" << std::endl;
         return 1;
     }
 
     while (true) {
-        std::cout << u8"1. Поиск пациента\n";
-        std::cout << u8"2. Сортировка пациентов\n";
-        std::cout << u8"3. Вывод всех пациентов\n";
-        std::cout << u8"4. Добавить пациента\n";
-        std::cout << u8"5. Выход\n";
-        std::cout << u8"Выберите пункт меню: ";
+        std::cout <<  "1. Поиск пациента\n";
+        std::cout <<  "2. Сортировка пациентов\n";
+        std::cout <<  "3. Вывод всех пациентов\n";
+        std::cout <<  "4. Добавить пациента\n";
+        std::cout <<  "5. Выход\n";
+        std::cout <<  "Выберите пункт меню: ";
 
         int choice;
         std::cin >> choice;
 
         if (choice == 1) {
             std::string searchQuery;
-            std::cout << u8"Введите запрос для поиска: ";
+            std::cout <<  "Введите запрос для поиска: ";
             std::cin >> searchQuery;
 
             bool found = false;
@@ -143,57 +143,55 @@ int main() {
             }
 
             if (!found) {
-                std::cout << u8"Пациенты с такими данными не найдены.\n";
+                std::cout <<  "Пациенты с такими данными не найдены.\n";
             }
         }
         else if (choice == 2) {
             std::sort(patients.begin(), patients.end());
-            std::cout << u8"Пациенты отсортированы по ФИО.\n";
+            std::cout <<  "Пациенты отсортированы по ФИО.\n";
         }
         else if (choice == 3) {
             for (const auto& patient : patients) {
                 patient.display();
-                std::cout << u8"--------------------------\n";
+                std::cout <<  "--------------------------\n";
             }
         }
         else if (choice == 4) {
             std::string name, gender, birthDate, phoneNumber, passportData, insurancePolicy, address, diagnosis;
-            std::cin.ignore(); // очищаем буфер ввода перед вводом имени, чтобы избежать пропуска ввода
+            std::cin.ignore();
 
-            std::cout << u8"Введите ФИО пациента: ";
+            std::cout <<  "Введите ФИО пациента: ";
             std::getline(std::cin, name);
-            std::cout << u8"Введите пол пациента: ";
+            std::cout <<  "Введите пол пациента: ";
             std::getline(std::cin, gender);
-            std::cout << u8"Введите дату рождения пациента: ";
+            std::cout <<  "Введите дату рождения пациента: ";
             std::getline(std::cin, birthDate);
-            std::cout << u8"Введите номер телефона пациента: ";
+            std::cout <<  "Введите номер телефона пациента: ";
             std::getline(std::cin, phoneNumber);
-            std::cout << u8"Введите паспортные данные пациента: ";
+            std::cout <<  "Введите паспортные данные пациента: ";
             std::getline(std::cin, passportData);
-            std::cout << u8"Введите номер страхового полиса пациента: ";
+            std::cout <<  "Введите номер страхового полиса пациента: ";
             std::getline(std::cin, insurancePolicy);
-            std::cout << u8"Введите адрес пациента: ";
+            std::cout <<  "Введите адрес пациента: ";
             std::getline(std::cin, address);
-            std::cout << u8"Введите диагноз пациента: ";
+            std::cout <<  "Введите диагноз пациента: ";
             std::getline(std::cin, diagnosis);
 
             Patient newPatient(name, gender, birthDate, phoneNumber, passportData, insurancePolicy, address, diagnosis);
             patients.push_back(newPatient);
-            std::cout << u8"Пациент добавлен.\n";
+            std::cout <<  "Пациент добавлен.\n";
 
             std::ofstream outputFile("patients_data.txt", std::ios::out | std::ios::trunc);
             if (outputFile.is_open()) {
-                // Устанавливаем режим вывода в UTF-8
-                outputFile << std::string(u8"\uFEFF");  // Добавляем BOM (Byte Order Mark) для указания UTF-8 кодировки
-                // Запись данных нового пациента в файл с символом новой строки в конце
+                // Запись данных нового пациента в файл в кодировке ANSI
                 outputFile << newPatient.getFullName() << "," << newPatient.getGender() << "," << newPatient.getBirthDate() << ","
                     << newPatient.getPhoneNumber() << "," << newPatient.getPassportData() << "," << newPatient.getInsurancePolicy() << ","
                     << newPatient.getAddress() << "," << newPatient.getDiagnosis() << "\n";
                 outputFile.close();
-                std::cout << u8"Пациент добавлен и данные обновлены в файле.\n";
+                std::cout <<  "Пациент добавлен и данные обновлены в файле.\n";
             }
             else {
-                std::cout << u8"Ошибка открытия файла для записи.\n";
+                std::cout <<  "Ошибка открытия файла для записи.\n";
             }
         }
 
@@ -201,7 +199,7 @@ int main() {
             break;
         }
         else {
-            std::cout << u8"Неверный выбор. Пожалуйста, попробуйте снова.\n";
+            std::cout <<  "Неверный выбор. Пожалуйста, попробуйте снова.\n";
         }
     }
 
