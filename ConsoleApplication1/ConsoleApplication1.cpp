@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <Windows.h>
+#include <locale>
 
 class Patient {
 private:
@@ -60,14 +61,14 @@ public:
 
     // Метод для вывода информации о пациенте
     void display() const {
-        std::cout <<  "ФИО: " << fullName << std::endl;
-        std::cout <<  "Пол: " << gender << std::endl;
-        std::cout <<  "Дата рождения: " << birthDate << std::endl;
-        std::cout <<  "Номер телефона: " << phoneNumber << std::endl;
-        std::cout <<  "Паспортные данные: " << passportData << std::endl;
-        std::cout <<  "Полис: " << insurancePolicy << std::endl;
-        std::cout <<  "Адрес: " << address << std::endl;
-        std::cout <<  "Диагноз: " << diagnosis << std::endl;
+        std::cout << "ФИО: " << fullName << std::endl;
+        std::cout << "Пол: " << gender << std::endl;
+        std::cout << "Дата рождения: " << birthDate << std::endl;
+        std::cout << "Номер телефона: " << phoneNumber << std::endl;
+        std::cout << "Паспортные данные: " << passportData << std::endl;
+        std::cout << "Полис: " << insurancePolicy << std::endl;
+        std::cout << "Адрес: " << address << std::endl;
+        std::cout << "Диагноз: " << diagnosis << std::endl;
     }
 
     // Метод для проверки наличия подстроки в данных пациента (регистронезависимый поиск)
@@ -75,8 +76,10 @@ public:
         std::string lowerCaseData = fullName + gender + birthDate + phoneNumber +
             passportData + insurancePolicy + address + diagnosis;
         std::string lowerCaseSubstring = substring;
-        std::transform(lowerCaseData.begin(), lowerCaseData.end(), lowerCaseData.begin(), [](unsigned char c) -> char { return std::tolower(c); });
-        std::transform(lowerCaseSubstring.begin(), lowerCaseSubstring.end(), lowerCaseSubstring.begin(), [](unsigned char c) -> char { return std::tolower(c); });
+
+        std::transform(lowerCaseData.begin(), lowerCaseData.end(), lowerCaseData.begin(), [](unsigned char c) -> char { return std::tolower(c, std::locale("")); });
+        std::transform(lowerCaseSubstring.begin(), lowerCaseSubstring.end(), lowerCaseSubstring.begin(), [](unsigned char c) -> char { return std::tolower(c, std::locale("")); });
+
         return lowerCaseData.find(lowerCaseSubstring) != std::string::npos;
     }
 
@@ -88,7 +91,7 @@ public:
 };
 
 int main() {
-    
+
     system("chcp 1251");
 
     std::vector<Patient> patients;
@@ -114,24 +117,24 @@ int main() {
         inputFile.close();
     }
     else {
-        std::cout <<  "Ошибка открытия файла patients_data.txt" << std::endl;
+        std::cout << "Ошибка открытия файла patients_data.txt" << std::endl;
         return 1;
     }
 
     while (true) {
-        std::cout <<  "1. Поиск пациента\n";
-        std::cout <<  "2. Сортировка пациентов\n";
-        std::cout <<  "3. Вывод всех пациентов\n";
-        std::cout <<  "4. Добавить пациента\n";
-        std::cout <<  "5. Выход\n";
-        std::cout <<  "Выберите пункт меню: ";
+        std::cout << "1. Поиск пациента\n";
+        std::cout << "2. Сортировка пациентов\n";
+        std::cout << "3. Вывод всех пациентов\n";
+        std::cout << "4. Добавить пациента\n";
+        std::cout << "5. Выход\n";
+        std::cout << "Выберите пункт меню: ";
 
         int choice;
         std::cin >> choice;
 
         if (choice == 1) {
             std::string searchQuery;
-            std::cout <<  "Введите запрос для поиска: ";
+            std::cout << "Введите запрос для поиска: ";
             std::cin >> searchQuery;
 
             bool found = false;
@@ -143,55 +146,55 @@ int main() {
             }
 
             if (!found) {
-                std::cout <<  "Пациенты с такими данными не найдены.\n";
+                std::cout << "Пациенты с такими данными не найдены.\n";
             }
         }
         else if (choice == 2) {
             std::sort(patients.begin(), patients.end());
-            std::cout <<  "Пациенты отсортированы по ФИО.\n";
+            std::cout << "Пациенты отсортированы по ФИО.\n";
         }
         else if (choice == 3) {
             for (const auto& patient : patients) {
                 patient.display();
-                std::cout <<  "--------------------------\n";
+                std::cout << "--------------------------\n";
             }
         }
         else if (choice == 4) {
             std::string name, gender, birthDate, phoneNumber, passportData, insurancePolicy, address, diagnosis;
             std::cin.ignore();
 
-            std::cout <<  "Введите ФИО пациента: ";
+            std::cout << "Введите ФИО пациента: ";
             std::getline(std::cin, name);
-            std::cout <<  "Введите пол пациента: ";
+            std::cout << "Введите пол пациента: ";
             std::getline(std::cin, gender);
-            std::cout <<  "Введите дату рождения пациента: ";
+            std::cout << "Введите дату рождения пациента: ";
             std::getline(std::cin, birthDate);
-            std::cout <<  "Введите номер телефона пациента: ";
+            std::cout << "Введите номер телефона пациента: ";
             std::getline(std::cin, phoneNumber);
-            std::cout <<  "Введите паспортные данные пациента: ";
+            std::cout << "Введите паспортные данные пациента: ";
             std::getline(std::cin, passportData);
-            std::cout <<  "Введите номер страхового полиса пациента: ";
+            std::cout << "Введите номер страхового полиса пациента: ";
             std::getline(std::cin, insurancePolicy);
-            std::cout <<  "Введите адрес пациента: ";
+            std::cout << "Введите адрес пациента: ";
             std::getline(std::cin, address);
-            std::cout <<  "Введите диагноз пациента: ";
+            std::cout << "Введите диагноз пациента: ";
             std::getline(std::cin, diagnosis);
 
             Patient newPatient(name, gender, birthDate, phoneNumber, passportData, insurancePolicy, address, diagnosis);
             patients.push_back(newPatient);
-            std::cout <<  "Пациент добавлен.\n";
+            std::cout << "Пациент добавлен.\n";
 
-            std::ofstream outputFile("patients_data.txt", std::ios::out | std::ios::trunc);
+            std::ofstream outputFile("patients_data.txt", std::ios::out | std::ios::app);
             if (outputFile.is_open()) {
                 // Запись данных нового пациента в файл в кодировке ANSI
                 outputFile << newPatient.getFullName() << "," << newPatient.getGender() << "," << newPatient.getBirthDate() << ","
                     << newPatient.getPhoneNumber() << "," << newPatient.getPassportData() << "," << newPatient.getInsurancePolicy() << ","
                     << newPatient.getAddress() << "," << newPatient.getDiagnosis() << "\n";
                 outputFile.close();
-                std::cout <<  "Пациент добавлен и данные обновлены в файле.\n";
+                std::cout << "Пациент добавлен и данные обновлены в файле.\n";
             }
             else {
-                std::cout <<  "Ошибка открытия файла для записи.\n";
+                std::cout << "Ошибка открытия файла для записи.\n";
             }
         }
 
@@ -199,7 +202,7 @@ int main() {
             break;
         }
         else {
-            std::cout <<  "Неверный выбор. Пожалуйста, попробуйте снова.\n";
+            std::cout << "Неверный выбор. Пожалуйста, попробуйте снова.\n";
         }
     }
 
